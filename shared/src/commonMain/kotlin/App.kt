@@ -23,7 +23,7 @@ fun App() {
         var showImage by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = {
-                greetingText = "Hello, ${getPlatformName()}"
+                greetingText = "Hello, VocaFlow!"
                 showImage = !showImage
             }) {
                 Text(greetingText)
