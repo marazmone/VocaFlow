@@ -15,3 +15,7 @@ allprojects {
         maven(url = "https://jitpack.io")
     }
 }
+
+apply {
+    from(file("config/detekt/detekt.gradle.kts"))
+}

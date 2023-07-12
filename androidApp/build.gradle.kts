@@ -33,6 +33,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain((findProperty("jdk.version") as String).toInt())
     }
 }

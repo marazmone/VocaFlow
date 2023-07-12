@@ -5,11 +5,16 @@ compose = "1.4.1"
 composeActivity = "1.7.2"
 appCompat = "1.6.1"
 androidxCore = "1.10.1"
+detekt = "1.23.0"
 
 [libraries]
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+detektFormat = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detektCli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
 
 [plugins]
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
@@ -19,3 +24,4 @@ android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 nativeCocoapod = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
