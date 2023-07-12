@@ -30,9 +30,15 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                // Insets
+                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha10")
+
+                // Navigation
+                implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
             }
         }
         val androidMain by getting {
@@ -56,7 +62,7 @@ kotlin {
 
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
-    namespace = "com.myapplication.common"
+    namespace = "com.vocaflow.common"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
