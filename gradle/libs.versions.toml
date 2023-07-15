@@ -1,0 +1,34 @@
+[versions]
+gradle = "7.4.2"
+insetsx = "0.1.0-alpha10"
+kotlin = "1.8.20"
+compose = "1.4.1"
+composeActivity = "1.7.2"
+appCompat = "1.6.1"
+androidxCore = "1.10.1"
+detekt = "1.23.0"
+voyagerNavigator = "1.0.0-rc06"
+jdk = "11"
+compileSdk = "33"
+minSdk = "24"
+
+[libraries]
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
+appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
+androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+detektFormat = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detektCli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
+insetsx = { module = "com.moriatsushi.insetsx:insetsx", version.ref = "insetsx" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerNavigator" }
+
+[plugins]
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+nativeCocoapod = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
