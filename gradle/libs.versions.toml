@@ -1,11 +1,16 @@
 [versions]
 gradle = "7.4.2"
+insetsx = "0.1.0-alpha10"
 kotlin = "1.8.20"
 compose = "1.4.1"
 composeActivity = "1.7.2"
 appCompat = "1.6.1"
 androidxCore = "1.10.1"
 detekt = "1.23.0"
+voyagerNavigator = "1.0.0-rc06"
+jdk = "11"
+compileSdk = "33"
+minSdk = "24"
 
 [libraries]
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
@@ -15,6 +20,8 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 detektFormat = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detektCli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
+insetsx = { module = "com.moriatsushi.insetsx:insetsx", version.ref = "insetsx" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerNavigator" }
 
 [plugins]
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }

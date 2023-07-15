@@ -35,10 +35,10 @@ kotlin {
                 implementation(compose.components.resources)
 
                 // Insets
-                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha10")
+                implementation(libs.insetsx)
 
                 // Navigation
-                implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
+                implementation(libs.voyager.navigator)
             }
         }
         val androidMain by getting {
@@ -61,7 +61,7 @@ kotlin {
 }
 
 android {
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
     namespace = "com.vocaflow.common"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -69,14 +69,13 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = (findProperty("android.minSdk") as String).toInt()
-        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlin {
-        jvmToolchain((findProperty("jdk.version") as String).toInt())
+        jvmToolchain(libs.versions.jdk.get().toInt())
     }
 }
