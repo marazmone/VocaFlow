@@ -288,8 +288,6 @@ formatting:
   EnumEntryNameCase:
     active: false
     autoCorrect: true
-  Filename:
-    active: true
   FinalNewline:
     active: true
     autoCorrect: true
