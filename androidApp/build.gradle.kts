@@ -11,6 +11,10 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
+
+                // Koin
+                implementation(libs.koin.core)
+                implementation(libs.koin.android)
             }
         }
     }

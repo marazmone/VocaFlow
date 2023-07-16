@@ -109,7 +109,8 @@ complexity:
   LongMethod:
     active: true
     threshold: 60
-    ignoreAnnotated: []
+    ignoreAnnotated:
+      - 'Composable'
   LongParameterList:
     active: true
     functionThreshold: 6
@@ -449,7 +450,7 @@ naming:
     excludes: ['**/*.kts']
     rootPackage: ''
   MatchingDeclarationName:
-    active: true
+    active: false
     mustBeFirst: true
   MemberNameEqualsClassName:
     active: true

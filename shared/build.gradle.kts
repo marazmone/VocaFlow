@@ -41,6 +41,12 @@ kotlin {
 
                 // Navigation
                 implementation(libs.voyager.navigator)
+
+                // Koin
+                implementation(libs.koin.core)
+
+                // Logger
+                implementation(libs.napier)
             }
         }
         val androidMain by getting {
@@ -53,6 +59,9 @@ kotlin {
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 implementation(libs.firebase.analytics)
                 implementation(libs.firebase.auth)
+
+                // Koin
+                implementation(libs.coil.compose)
             }
         }
         val iosX64Main by getting

@@ -1,8 +1,6 @@
 package domain.firebase.auth
 
-import domain.firebase.FirebaseException
-
-expect class FirebaseAuth {
+interface FirebaseAuthProvider {
 
     val currentUser: FirebaseUser?
 
@@ -12,11 +10,3 @@ expect class FirebaseAuth {
 
     suspend fun logout()
 }
-
-expect class AuthResult {
-    val user: FirebaseUser?
-}
-
-expect open class FirebaseAuthException : FirebaseException
-
-expect class FirebaseAuthUserCollisionException : FirebaseAuthException
