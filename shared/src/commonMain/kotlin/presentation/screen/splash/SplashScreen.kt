@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import presentation.screen.intro.IntroScreen
 import presentation.ui.AppTheme
 
+@Suppress("MagicNumber")
 internal object SplashScreen : Screen {
 
     // Temporary splash screen
