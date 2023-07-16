@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.kotlin) apply false
     alias(libs.plugins.jvm) apply false
     alias(libs.plugins.nativeCocoapod) apply false
+    alias(libs.plugins.google.services) apply false
 }
 
 allprojects {

@@ -11,6 +11,8 @@ voyagerNavigator = "1.0.0-rc06"
 jdk = "11"
 compileSdk = "33"
 minSdk = "24"
+gms = "4.3.15"
+firebaseBoM = "32.2.0"
 
 [libraries]
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
@@ -22,6 +24,9 @@ detektFormat = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", versi
 detektCli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
 insetsx = { module = "com.moriatsushi.insetsx:insetsx", version.ref = "insetsx" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerNavigator" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBoM" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
 
 [plugins]
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
@@ -32,3 +37,4 @@ jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 nativeCocoapod = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+google-services = { id = "com.google.gms.google-services", version.ref = "gms" }
