@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose)
+    alias(libs.plugins.google.services)
 }
 
 kotlin {
@@ -10,6 +11,10 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
+
+                // Koin
+                implementation(libs.koin.core)
+                implementation(libs.koin.android)
             }
         }
     }

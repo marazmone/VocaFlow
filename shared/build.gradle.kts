@@ -23,6 +23,8 @@ kotlin {
             isStatic = true
         }
         extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+        pod("FirebaseAnalytics")
+        pod("FirebaseAuth")
     }
 
     sourceSets {
@@ -39,6 +41,12 @@ kotlin {
 
                 // Navigation
                 implementation(libs.voyager.navigator)
+
+                // Koin
+                implementation(libs.koin.core)
+
+                // Logger
+                implementation(libs.napier)
             }
         }
         val androidMain by getting {
@@ -46,6 +54,14 @@ kotlin {
                 api(libs.compose.activity)
                 api(libs.appCompat)
                 api(libs.androidX.core)
+
+                // Firebase
+                implementation(project.dependencies.platform(libs.firebase.bom))
+                implementation(libs.firebase.analytics)
+                implementation(libs.firebase.auth)
+
+                // Koin
+                implementation(libs.coil.compose)
             }
         }
         val iosX64Main by getting
