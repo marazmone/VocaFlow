@@ -45,7 +45,10 @@ internal object FirebaseTestScreen : Screen, KoinComponent {
                         text = state.errorMessage,
                         color = AppTheme.colors.grayscale.gray100,
                         modifier = Modifier
-                            .align(Alignment.Center),
+                            .align(Alignment.Center)
+                            .clickable {
+                                viewStateModel.getUser()
+                            },
                     )
                 }
 
@@ -66,7 +69,16 @@ internal object FirebaseTestScreen : Screen, KoinComponent {
                             modifier = Modifier
                                 .padding(16.dp)
                                 .clickable {
-                                    viewStateModel.login()
+                                    viewStateModel.createOrLogin()
+                                },
+                        )
+                        Text(
+                            text = "Reset password by email",
+                            color = AppTheme.colors.grayscale.gray100,
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .clickable {
+                                    viewStateModel.resetByEmail()
                                 },
                         )
                     }

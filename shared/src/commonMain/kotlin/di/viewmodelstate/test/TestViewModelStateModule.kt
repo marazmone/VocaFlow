@@ -4,5 +4,5 @@ import org.koin.dsl.module
 import presentation.test.auth.FirebaseTestScreenStateModel
 
 fun testViewModelStateModule() = module {
-    single { FirebaseTestScreenStateModel(get(), get(), get(), get()) }
+    single { FirebaseTestScreenStateModel(get(), get(), get(), get(), get()) }
 }

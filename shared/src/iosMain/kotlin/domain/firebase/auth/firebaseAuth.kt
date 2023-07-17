@@ -1,5 +1,6 @@
 package domain.firebase.auth
 
+import cocoapods.FirebaseAuth.FIRActionCodeSettings
 import cocoapods.FirebaseAuth.FIRAuth
 import cocoapods.FirebaseAuth.FIRAuthDataResult
 import cocoapods.FirebaseAuth.FIRAuthErrorCodeAccountExistsWithDifferentCredential
@@ -16,6 +17,7 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 import kotlinx.coroutines.CompletableDeferred
 import platform.Foundation.NSError
+import platform.Foundation.NSURL
 
 actual class FirebaseAuth internal constructor(private val auth: FIRAuth) {
     actual val currentUser: FirebaseUser?
@@ -26,6 +28,18 @@ actual class FirebaseAuth internal constructor(private val auth: FIRAuth) {
 
     actual suspend fun loginWithEmailAndPassword(email: String, password: String) =
         AuthResult(auth.awaitResult { signInWithEmail(email = email, password = password, completion = it) })
+
+    actual suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: ActionCodeSettings?) {
+        auth.await {
+            actionCodeSettings?.let { actionSettings ->
+                sendPasswordResetWithEmail(
+                    email,
+                    actionSettings.toIos(),
+                    it
+                )
+            } ?: sendPasswordResetWithEmail(email = email, completion = it)
+        }
+    }
 
     actual suspend fun logout() {
         auth.throwError { signOut(it) }
@@ -40,6 +54,18 @@ actual class AuthResult internal constructor(private val authResult: FIRAuthData
 actual open class FirebaseAuthException(message: String) : FirebaseException(message)
 
 actual open class FirebaseAuthUserCollisionException(message: String) : FirebaseAuthException(message)
+
+internal suspend inline fun <T> T.await(function: T.(callback: (NSError?) -> Unit) -> Unit) {
+    val job = CompletableDeferred<Unit>()
+    function { error ->
+        if (error == null) {
+            job.complete(Unit)
+        } else {
+            job.completeExceptionally(error.toException())
+        }
+    }
+    job.await()
+}
 
 internal suspend inline fun <T, reified R> T.awaitResult(function: T.(callback: (R?, NSError?) -> Unit) -> Unit): R {
     val job = CompletableDeferred<R?>()
@@ -75,4 +101,12 @@ private fun NSError.toException() = when (domain) {
     }
 
     else -> FirebaseException(localizedDescription)
+}
+
+internal fun ActionCodeSettings.toIos() = FIRActionCodeSettings().also {
+    it.URL = NSURL.URLWithString(url)
+    androidPackageName?.run { it.setAndroidPackageName(packageName, installIfNotAvailable, minimumVersion) }
+    it.dynamicLinkDomain = dynamicLinkDomain
+    it.handleCodeInApp = canHandleCodeInApp
+    iOSBundleId?.run { it.setIOSBundleID(this) }
 }

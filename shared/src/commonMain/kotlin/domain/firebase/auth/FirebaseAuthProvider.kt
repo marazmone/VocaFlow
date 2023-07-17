@@ -8,5 +8,7 @@ interface FirebaseAuthProvider {
 
     suspend fun loginWithEmailAndPassword(email: String, password: String): AuthResult
 
+    suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: ActionCodeSettings? = null)
+
     suspend fun logout()
 }
