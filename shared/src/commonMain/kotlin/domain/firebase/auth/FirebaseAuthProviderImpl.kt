@@ -13,6 +13,10 @@ class FirebaseAuthProviderImpl(
     override suspend fun loginWithEmailAndPassword(email: String, password: String): AuthResult =
         firebaseAuth.loginWithEmailAndPassword(email, password)
 
+    override suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: ActionCodeSettings?) {
+        firebaseAuth.sendPasswordResetEmail(email, actionCodeSettings)
+    }
+
     override suspend fun logout() {
         firebaseAuth.logout()
     }
