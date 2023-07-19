@@ -22,8 +22,6 @@ Vocabulary Expansion: VocaFlow provides users with a comprehensive database of w
 |<img width="375" alt="auth-screen-1" src="https://github.com/marazmone/VocaFlow/assets/7988862/c86339ba-9df5-43b7-b417-2838a38c40fc">|<img width="375" alt="auth-screen-2" src="https://github.com/marazmone/VocaFlow/assets/7988862/6d04aa2a-c8be-4d92-a17f-763fbdb06003">|<img width="375" alt="auth-screen-3" src="https://github.com/marazmone/VocaFlow/assets/7988862/7b28906e-6fca-4981-96b2-24fd454f9455">|
 |--|--|--|
 
-#### To be continue...
-
 ## Tech-Stack
 
 -   Tech-stack
@@ -49,4 +47,11 @@ Vocabulary Expansion: VocaFlow provides users with a comprehensive database of w
     -   [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)  - define build scripts
     -   [Versions catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog)  - define dependencies
 -   GitHub Boots
-    ...
+
+## Architecture
+
+### Layears
+
+![architecture](https://github.com/marazmone/VocaFlow/assets/7988862/f8fa65ef-6523-4556-a456-4b339792c935)
+
+## To be continue...
