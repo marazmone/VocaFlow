@@ -1,10 +1,10 @@
 package domain.usecase.firebase.auth
 
-import domain.firebase.auth.FirebaseAuthProvider
+import domain.repository.FirebaseAuthRepository
 
 class FirebaseAuthLogoutUseCase(
-    private val firebaseAuthProvider: FirebaseAuthProvider,
+    private val repository: FirebaseAuthRepository,
 ) {
 
-    suspend fun execute() = firebaseAuthProvider.logout()
+    suspend fun execute() = repository.logout()
 }

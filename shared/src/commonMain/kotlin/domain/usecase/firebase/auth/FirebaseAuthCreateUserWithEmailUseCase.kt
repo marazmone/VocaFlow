@@ -1,13 +1,13 @@
 package domain.usecase.firebase.auth
 
-import domain.firebase.auth.AuthResult
-import domain.firebase.auth.FirebaseAuthProvider
+import domain.model.firebase.auth.FirebaseAuthResult
+import domain.repository.FirebaseAuthRepository
 
 class FirebaseAuthCreateUserWithEmailUseCase(
-    private val firebaseAuthProvider: FirebaseAuthProvider,
+    private val repository: FirebaseAuthRepository,
 ) {
 
-    suspend fun execute(email: String, password: String): AuthResult {
-        return firebaseAuthProvider.createUserWithEmailAndPassword(email, password)
+    suspend fun execute(email: String, password: String): FirebaseAuthResult {
+        return repository.createUserWithEmailAndPassword(email, password)
     }
 }

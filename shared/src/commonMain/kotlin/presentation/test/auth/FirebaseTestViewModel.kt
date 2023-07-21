@@ -1,6 +1,6 @@
 package presentation.test.auth
 
-import domain.firebase.auth.FirebaseAuthUserCollisionException
+import data.datasource.firebase.core.auth.FirebaseAuthUserCollisionException
 import domain.usecase.firebase.auth.FirebaseAuthCreateUserWithEmailUseCase
 import domain.usecase.firebase.auth.FirebaseAuthGetCurrentUserUseCase
 import domain.usecase.firebase.auth.FirebaseAuthLoginWithEmailUseCase
