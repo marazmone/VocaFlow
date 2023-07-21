@@ -12,7 +12,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseScreenStateModel<STATE : BaseViewState, ACTION : BaseViewAction, EFFECT : BaseViewEffect> :
+abstract class BaseViewModel<STATE : BaseViewState, ACTION : BaseViewAction, EFFECT : BaseViewEffect> :
     CoroutineScope {
 
     override val coroutineContext: CoroutineContext
