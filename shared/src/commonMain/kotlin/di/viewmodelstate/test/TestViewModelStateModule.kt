@@ -1,8 +1,8 @@
 package di.viewmodelstate.test
 
 import org.koin.dsl.module
-import presentation.test.auth.FirebaseTestScreenStateModel
+import presentation.test.auth.FirebaseTestViewModel
 
 fun testViewModelStateModule() = module {
-    single { FirebaseTestScreenStateModel(get(), get(), get(), get(), get()) }
+    single { FirebaseTestViewModel(get(), get(), get(), get(), get()) }
 }

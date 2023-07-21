@@ -23,7 +23,7 @@ internal object FirebaseTestScreen : Screen, KoinComponent {
 
     @Composable
     override fun Content() {
-        val viewStateModel by inject<FirebaseTestScreenStateModel>()
+        val viewStateModel by inject<FirebaseTestViewModel>()
         val state = viewStateModel.state.value
         Box(
             modifier = Modifier
