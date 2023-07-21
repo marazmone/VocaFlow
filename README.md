@@ -76,28 +76,30 @@ Components:
 
 For example(`ViewModel`):
 
-    ```kotlin
-    override fun setInitialState(): State = State()
+```kotlin
+...
+	override fun setInitialState(): State = State()
     
-    override fun onReduceState(action: Action): State = when (action) {  
-		    is Loading -> currentState.copy(  
-		    isLoading = true,  
-		    isError = false,  
-	    )  
-      
-	    is GetCurrentUser -> currentState.copy(  
-		    isLoading = false,  
-		    isError = false,  
-		    currentUser = action.currentUser,  
-	    )  
-      
-	    is Action.Error -> currentState.copy(  
-		    isLoading = false,  
-		    isError = true,  
-		    errorMessage = action.errorMessage,  
+	override fun onReduceState(action: Action): State = when (action) {  
+		is Loading -> currentState.copy(  
+			isLoading = true,  
+			isError = false,  
 		)  
-    }
-    ```
+      
+		is GetCurrentUser -> currentState.copy(  
+			isLoading = false,  
+			isError = false,  
+			currentUser = action.currentUser,  
+		)  
+      
+		is Action.Error -> currentState.copy(  
+			isLoading = false,  
+			isError = true,  
+			errorMessage = action.errorMessage,  
+		)  
+	}
+...
+```
 
 -   **Effect**  - plain object that signals one-time side-effect actions that should impact the UI e.g. triggering a navigation action, showing a Toast, SnackBar etc. Effects are exposed as  `ChannelFlow`  which behave as in each event is delivered to a single subscriber. An attempt to post an event without subscribers will suspend as soon as the channel buffer becomes full, waiting for a subscriber to appear.
 
@@ -105,31 +107,31 @@ Every **screen** defines its own **contract class** that states all correspondin
 
 For example:
 
-    ```kotlin
-    class FirebaseTestContract {  
+```kotlin
+class FirebaseTestContract {  
       
-	    data class State(  
-		    val currentUser: FirebaseUser? = null,  
-		    val isLoading: Boolean = false,  
-		    val isError: Boolean = false,  
-		    val errorMessage: String = "",  
-	    ) : BaseViewState  
+	data class State(  
+		val currentUser: FirebaseUser? = null,  
+		val isLoading: Boolean = false,  
+		val isError: Boolean = false,  
+		val errorMessage: String = "",  
+	) : BaseViewState  
       
-	    sealed interface Action : BaseViewAction {  
+	sealed interface Action : BaseViewAction {  
       
-		    object Loading : Action  
+		object Loading : Action  
       
-		    data class GetCurrentUser(val currentUser: FirebaseUser?) : Action  
+		data class GetCurrentUser(val currentUser: FirebaseUser?) : Action  
       
-		    data class Error(val errorMessage: String) : Action  
-	    }  
+		data class Error(val errorMessage: String) : Action  
+	}  
       
-	    sealed interface Effect : BaseViewEffect {  
+	sealed interface Effect : BaseViewEffect {  
       
-		    object NavigationBack : Effect  
-	    }  
-    }
-    ```
+		object NavigationBack : Effect  
+	}  
+}
+```
 
 #### Domain Layer
 
