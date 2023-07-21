@@ -7,7 +7,7 @@ import domain.usecase.firebase.auth.FirebaseAuthLoginWithEmailUseCase
 import domain.usecase.firebase.auth.FirebaseAuthLogoutUseCase
 import domain.usecase.firebase.auth.FirebaseAuthResetPasswordByEmailUseCase
 import kotlinx.coroutines.launch
-import presentation.base.BaseScreenStateModel
+import presentation.base.BaseViewModel
 import presentation.test.auth.FirebaseTestContract.Action
 import presentation.test.auth.FirebaseTestContract.Action.GetCurrentUser
 import presentation.test.auth.FirebaseTestContract.Action.Loading
@@ -17,13 +17,13 @@ import presentation.test.auth.FirebaseTestContract.State
 private const val TEST_LOGIN = "sergei.gulenko@gmail.com"
 private const val TEST_PASSWORD = "marazm92"
 
-class FirebaseTestScreenStateModel(
+class FirebaseTestViewModel(
     private val getCurrentUserUseCase: FirebaseAuthGetCurrentUserUseCase,
     private val createUserWithEmailUseCase: FirebaseAuthCreateUserWithEmailUseCase,
     private val logoutUseCase: FirebaseAuthLogoutUseCase,
     private val loginWithEmailUseCase: FirebaseAuthLoginWithEmailUseCase,
     private val resetPasswordByEmailUseCase: FirebaseAuthResetPasswordByEmailUseCase,
-) : BaseScreenStateModel<State, Action, Effect>() {
+) : BaseViewModel<State, Action, Effect>() {
 
     init {
         getUser()
