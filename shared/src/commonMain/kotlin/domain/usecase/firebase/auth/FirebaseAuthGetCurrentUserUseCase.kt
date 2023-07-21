@@ -1,11 +1,11 @@
 package domain.usecase.firebase.auth
 
-import domain.firebase.auth.FirebaseAuthProvider
-import domain.firebase.auth.FirebaseUser
+import domain.model.firebase.auth.FirebaseAuthUser
+import domain.repository.FirebaseAuthRepository
 
 class FirebaseAuthGetCurrentUserUseCase(
-    private val firebaseAuthProvider: FirebaseAuthProvider,
+    private val repository: FirebaseAuthRepository,
 ) {
 
-    fun execute(): FirebaseUser? = firebaseAuthProvider.currentUser
+    fun execute(): FirebaseAuthUser? = repository.currentUser
 }

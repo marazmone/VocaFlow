@@ -1,7 +1,7 @@
 package di
 
 import cocoapods.FirebaseAuth.FIRAuth
-import domain.firebase.auth.FirebaseAuth
+import data.datasource.firebase.core.auth.FirebaseAuth
 import org.koin.core.module.Module
 import org.koin.dsl.module
 

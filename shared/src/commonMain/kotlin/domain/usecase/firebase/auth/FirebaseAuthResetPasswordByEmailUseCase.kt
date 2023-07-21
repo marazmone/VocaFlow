@@ -1,13 +1,13 @@
 package domain.usecase.firebase.auth
 
-import domain.firebase.auth.ActionCodeSettings
-import domain.firebase.auth.FirebaseAuthProvider
+import data.model.firebase.auth.FirebaseActionCodeSettings
+import domain.repository.FirebaseAuthRepository
 
 class FirebaseAuthResetPasswordByEmailUseCase(
-    private val firebaseAuthProvider: FirebaseAuthProvider,
+    private val repository: FirebaseAuthRepository,
 ) {
 
-    suspend fun execute(email: String, actionCodeSettings: ActionCodeSettings? = null) {
-        firebaseAuthProvider.sendPasswordResetEmail(email, actionCodeSettings)
+    suspend fun execute(email: String, actionCodeSettings: FirebaseActionCodeSettings? = null) {
+        repository.sendPasswordResetEmail(email, actionCodeSettings)
     }
 }
