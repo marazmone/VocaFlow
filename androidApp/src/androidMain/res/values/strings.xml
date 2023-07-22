@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">VocaFlow</string>
+    <string name="intro_screen_1_title">Can be accessed from anywhere at any time</string>
+    <string name="intro_screen_2_title">Offers a dynamic and interactive experience</string>
+    <string name="intro_screen_3_title">Experience the Premium Features with Our App</string>
+    <string name="intro_screen_1_description">The essential language learning tools and resources you need to seamlessly transition into mastering a new language</string>
+    <string name="intro_screen_2_description">Engaging features including test, story telling, and conversations that motivate and inspire language learners to unlock their full potential</string>
+    <string name="intro_screen_3_description">Updated TalkGpt with premium materials and a dedicated following, providing language learners with immersive content for effective learning</string>
+    <string name="button_next">Next</string>
+    <string name="button_get_started">Get Started</string>
 </resources>
