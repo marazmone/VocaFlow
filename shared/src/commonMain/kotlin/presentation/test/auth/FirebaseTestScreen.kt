@@ -17,6 +17,7 @@ import com.moriatsushi.insetsx.navigationBarsPadding
 import com.moriatsushi.insetsx.statusBarsPadding
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import presentation.text.Strings
 import presentation.ui.AppTheme
 
 internal object FirebaseTestScreen : Screen, KoinComponent {
@@ -64,7 +65,7 @@ internal object FirebaseTestScreen : Screen, KoinComponent {
                                 .padding(16.dp),
                         )
                         Text(
-                            text = "Login to Firebase",
+                            text = "${Strings.get("button_get_started")} to Firebase",
                             color = AppTheme.colors.grayscale.gray100,
                             modifier = Modifier
                                 .padding(16.dp)

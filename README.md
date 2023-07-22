@@ -160,5 +160,10 @@ All of the dependencies are stored in the  [settings.gradle.kts](https://github.
 -   `[bundles]`  - declare dependency bundles (groups)
 -   `[plugins]`  - declare Gradle plugin dependencies
 
+## 🌐 Localization
+
+[![Crowdin](https://badges.crowdin.net/vocaflow/localized.svg)](https://crowdin.com/project/vocaflow)
+
+🇬🇧  🇺🇦
 
 #### To be continue...

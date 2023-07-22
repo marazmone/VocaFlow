@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VocaFlow</string>
+    <string name="intro_screen_1_title">Доступний з будь-якого місця в будь-який час</string>
+    <string name="intro_screen_2_title">Пропонує динамічний та інтерактивний досвід</string>
+    <string name="intro_screen_3_title">Спробуйте преміум-функції з нашим додатком</string>
+    <string name="intro_screen_1_description">Основні інструменти та ресурси для вивчення мови, необхідні для плавного переходу до оволодіння новою мовою</string>
+    <string name="intro_screen_2_description">Захоплюючі функції, включаючи тести, розповіді та бесіди, які мотивують і надихають тих, хто вивчає мову, розкрити весь свій потенціал</string>
+    <string name="intro_screen_3_description">Оновлений TalkGpt з преміум-матеріалами та спеціальною групою, що надає студентам, які вивчають іноземні мови, захоплюючий контент для ефективного навчання</string>
+    <string name="button_next">Далі</string>
+    <string name="button_get_started">Початок роботи</string>
+</resources>
