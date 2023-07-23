@@ -166,4 +166,20 @@ All of the dependencies are stored in the  [settings.gradle.kts](https://github.
 
 🇬🇧  🇺🇦
 
+The approach for using localization in KMM takes from [Medium](https://medium.com/xorum-io/simple-string-localization-in-kmm-beaffc5e7a17)
+
+Example:
+
+```kotlin
+Text(
+    text = Strings.get(id = "name"),
+)
+Text(
+    text = Strings.get(id = "number", quantity = 1),
+)
+Text(
+    text = Strings.format(id  = "text_by_args", args = arrayOf("1", "2", "3")),
+)
+```
+
 #### To be continue...
