@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">VocaFlow</string>
     <string name="intro_screen_1_title">Can be accessed from anywhere at any time</string>
@@ -8,4 +9,14 @@
     <string name="intro_screen_3_description">Updated TalkGpt with premium materials and a dedicated following, providing language learners with immersive content for effective learning</string>
     <string name="button_next">Next</string>
     <string name="button_get_started">Get Started</string>
+    <string name="create_account_title">Create Account</string>
+    <string name="create_account_description">We are happy to see you. Sign Up to your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="button_create_account">Create Account</string>
+    <string name="create_account_already_exist">Already have an account?</string>
+    <string name="log_in">Log In</string>
+    <string name="terms_full">By signing up you agree to our Terms and Conditions of Use</string>
+    <string name="terms_part_1">Terms</string>
+    <string name="terms_part_2">Conditions of Use</string>
 </resources>
