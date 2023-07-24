@@ -25,6 +25,8 @@ kotlin {
         extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
         pod("FirebaseAnalytics")
         pod("FirebaseAuth")
+        pod("FirebaseCrashlytics")
+        pod("FirebaseCore")
     }
 
     sourceSets {
@@ -59,6 +61,7 @@ kotlin {
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 implementation(libs.firebase.analytics)
                 implementation(libs.firebase.auth)
+                implementation(libs.firebase.crashlytics)
 
                 // Koin
                 implementation(libs.coil.compose)

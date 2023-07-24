@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jvm) apply false
     alias(libs.plugins.nativeCocoapod) apply false
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
 }
 
 allprojects {
