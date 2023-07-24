@@ -19,4 +19,5 @@
     <string name="terms_full">Реєструючись, ви погоджуєтеся з нашими Умовами та положеннями використання</string>
     <string name="terms_part_1">Умовами</string>
     <string name="terms_part_2">положеннями використання</string>
+    <string name="something_wrong">Щось пішло не так, спробуйте повторити операцію пізніше</string>
 </resources>

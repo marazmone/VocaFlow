@@ -17,3 +17,4 @@ button_get_started = "Get Started";
 "terms_full" = "By signing up you agree to our Terms and Conditions of Use";
 "terms_part_1" = "Terms";
 "terms_part_2" = "Conditions of Use";
+"something_wrong" = "Something went wrong, try to repeat the operation later";

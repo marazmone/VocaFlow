@@ -53,6 +53,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                api(compose.preview)
                 api(libs.compose.activity)
                 api(libs.appCompat)
                 api(libs.androidX.core)
@@ -97,4 +98,16 @@ android {
     kotlin {
         jvmToolchain(libs.versions.jdk.get().toInt())
     }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+    // Compose
+    val composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    // Android Studio Preview support
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
 }

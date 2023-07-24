@@ -1,24 +1,31 @@
-package presentation.screen.splash
+package presentation.screen.auth.create
 
 import presentation.base.BaseViewAction
 import presentation.base.BaseViewEffect
 import presentation.base.BaseViewState
 
-class SplashContract {
+class AuthCreateContract {
 
     data class State(
+        val email: String = "",
+        val password: String = "",
+        val isLoading: Boolean = false,
         val isError: Boolean = false,
         val errorMessage: String = "",
     ) : BaseViewState
 
     sealed interface Action : BaseViewAction {
 
-        data class Error(val message: String) : Action
+        data class Error(val errorMessage: String) : Action
+
+        object Loading : Action
+
+        data class UpdateEmail(val email: String) : Action
+
+        data class UpdatePassword(val password: String) : Action
     }
 
     sealed interface Effect : BaseViewEffect {
-
-        object NavigateToAuthFlow : Effect
 
         object NavigateToMainFlow : Effect
     }
