@@ -21,6 +21,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import presentation.text.getString
 import presentation.ui.AppTheme
+import presentation.ui.composable.InputText
 
 internal object AuthCreateScreen : Screen, KoinComponent {
 
@@ -41,7 +42,10 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                 .background(AppTheme.colors.additional.background),
         ) {
 
-            Column {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
                 Spacer(modifier = Modifier.height(56.dp))
                 Text(
                     text = getString("create_account_title"),
@@ -60,6 +64,16 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                     style = AppTheme.typography.bodyMediumMedium,
                     color = AppTheme.colors.grayscale.gray40,
                     textAlign = TextAlign.Center,
+                )
+                Spacer(modifier = Modifier.height(36.dp))
+                InputText(
+                    label = getString("email"),
+                    placeholder = getString("email"),
+                    inputValue = "",
+                    onInputValueChange = {},
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth(),
                 )
             }
         }
