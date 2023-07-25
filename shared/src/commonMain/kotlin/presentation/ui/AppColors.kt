@@ -45,7 +45,7 @@ data class AppColors(
 
 internal val lightColors = AppColors(
     main = AppColors.MainColors(
-        primary = Color(0xFF4864E1),
+        primary = Color(0xFF1460F2),
         secondary = Color(0xFFF984A0),
     ),
     alerts = AppColors.AlertColors(
