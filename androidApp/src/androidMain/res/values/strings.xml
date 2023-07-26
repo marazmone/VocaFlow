@@ -16,8 +16,9 @@
     <string name="button_create_account">Create Account</string>
     <string name="create_account_already_exist">Already have an account?</string>
     <string name="log_in">Log In</string>
-    <string name="terms_full">By signing up you agree to our Terms and Conditions of Use</string>
-    <string name="terms_part_1">Terms</string>
-    <string name="terms_part_2">Conditions of Use</string>
     <string name="something_wrong">Something went wrong, try to repeat the operation later</string>
+    <string name="terms_part_1">By signing up you agree to our</string>
+    <string name="terms_part_2">Terms</string>
+    <string name="terms_part_3">and</string>
+    <string name="terms_part_4">Conditions of Use</string>
 </resources>

@@ -16,8 +16,9 @@
     <string name="button_create_account">Створити акаунт</string>
     <string name="create_account_already_exist">У вас вже є обліковий запис?</string>
     <string name="log_in">Увійдіть</string>
-    <string name="terms_full">Реєструючись, ви погоджуєтеся з нашими Умовами та положеннями використання</string>
-    <string name="terms_part_1">Умовами</string>
-    <string name="terms_part_2">положеннями використання</string>
     <string name="something_wrong">Щось пішло не так, спробуйте повторити операцію пізніше</string>
+    <string name="terms_part_1">Реєструючись, ви погоджуєтеся з нашими</string>
+    <string name="terms_part_2">Умовами</string>
+    <string name="terms_part_3">та</string>
+    <string name="terms_part_4">положеннями використання</string>
 </resources>

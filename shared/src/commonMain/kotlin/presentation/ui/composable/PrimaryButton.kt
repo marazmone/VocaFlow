@@ -1,7 +1,5 @@
 package presentation.ui.composable
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -14,9 +12,7 @@ import presentation.ui.AppTheme
 @Composable
 fun PrimaryButton(
     text: String,
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .height(46.dp),
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
     Button(
@@ -27,7 +23,7 @@ fun PrimaryButton(
             disabledContentColor = AppTheme.colors.grayscale.gray40,
             disabledContainerColor = AppTheme.colors.grayscale.gray10,
         ),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(50.dp),
         modifier = modifier,
     ) {
         Text(text)

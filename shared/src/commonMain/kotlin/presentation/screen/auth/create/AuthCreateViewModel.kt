@@ -38,4 +38,12 @@ class AuthCreateViewModel(
             isLoading = false,
         )
     }
+
+    fun updateEmail(email: String) {
+        sendAction { Action.UpdateEmail(email) }
+    }
+
+    fun updatePassword(password: String) {
+        sendAction { Action.UpdatePassword(password) }
+    }
 }

@@ -11,17 +11,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.moriatsushi.insetsx.statusBarsPadding
+import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import presentation.text.getString
 import presentation.ui.AppTheme
 import presentation.ui.composable.InputText
+import presentation.ui.composable.PrimaryButton
+import presentation.ui.composable.auth.CreateOrLoginText
+import presentation.ui.composable.auth.TermsText
 
 internal object AuthCreateScreen : Screen, KoinComponent {
 
@@ -30,16 +36,26 @@ internal object AuthCreateScreen : Screen, KoinComponent {
         val mainNavigator = LocalNavigator.currentOrThrow
         val viewModel by inject<AuthCreateViewModel>()
 
-        AuthCreateScreenWidget()
+        AuthCreateScreenWidget(
+            state = viewModel.state.value,
+            effects = viewModel.effects,
+            onUpdateEmail = { viewModel.updateEmail(it) },
+            onUpdatePassword = { viewModel.updatePassword(it) },
+        )
     }
 
     @Composable
-    fun AuthCreateScreenWidget() {
+    fun AuthCreateScreenWidget(
+        state: AuthCreateContract.State,
+        effects: Flow<AuthCreateContract.Effect>,
+        onUpdateEmail: (String) -> Unit,
+        onUpdatePassword: (String) -> Unit,
+    ) {
         Box(
             modifier = Modifier
-                .statusBarsPadding()
                 .fillMaxSize()
-                .background(AppTheme.colors.additional.background),
+                .background(AppTheme.colors.additional.background)
+                .statusBarsPadding(),
         ) {
 
             Column(
@@ -69,13 +85,49 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                 InputText(
                     label = getString("email"),
                     placeholder = getString("email"),
-                    inputValue = "",
-                    onInputValueChange = {},
+                    maxLines = 1,
+                    imeAction = ImeAction.Next,
+                    keyboardType = KeyboardType.Email,
+                    inputValue = state.email,
+                    onInputValueChange = {
+                        onUpdateEmail.invoke(it)
+                    },
                     modifier = Modifier
                         .padding(horizontal = 24.dp)
                         .fillMaxWidth(),
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                InputText(
+                    label = getString("password"),
+                    placeholder = getString("password"),
+                    maxLines = 1,
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done,
+                    inputValue = state.password,
+                    onInputValueChange = {
+                        onUpdatePassword.invoke(it)
+                    },
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth(),
+                )
+                Spacer(modifier = Modifier.height(68.dp))
+                PrimaryButton(
+                    text = getString("button_create_account"),
+                    onClick = {},
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth()
+                        .height(56.dp),
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                CreateOrLoginText(
+                    onClick = {},
+                )
             }
+            TermsText(
+                onClick = {},
+            )
         }
     }
 }
