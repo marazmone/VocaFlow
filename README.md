@@ -172,13 +172,13 @@ Example:
 
 ```kotlin
 Text(
-    text = Strings.get(id = "name"),
+    text = getString(id = "name"),
 )
 Text(
-    text = Strings.get(id = "number", quantity = 1),
+    text = getString(id = "number", quantity = 1),
 )
 Text(
-    text = Strings.format(id  = "text_by_args", args = arrayOf("1", "2", "3")),
+    text = getString(id  = "text_by_args", args = arrayOf("1", "2", "3")),
 )
 ```
 

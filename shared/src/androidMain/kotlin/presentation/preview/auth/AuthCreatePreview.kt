@@ -16,6 +16,8 @@ fun AuthCreateScreenPreview() {
             effects = emptyFlow(),
             onUpdateEmail = {},
             onUpdatePassword = {},
+            onCloseErrorPasswordDialog = {},
+            onTryCreateAccount = {},
         )
     }
 }

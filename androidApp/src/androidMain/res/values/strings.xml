@@ -21,4 +21,6 @@
     <string name="terms_part_2">Terms</string>
     <string name="terms_part_3">and</string>
     <string name="terms_part_4">Conditions of Use</string>
+    <string name="auth_create_password_error">Your password must be at least 8 characters including a lowercase letter, an uppercase letter, and a number!</string>
+    <string name="close">Close</string>
 </resources>
