@@ -13,9 +13,11 @@ import presentation.ui.AppTheme
 fun PrimaryButton(
     text: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     Button(
+        enabled = enabled,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             contentColor = AppTheme.colors.additional.white,

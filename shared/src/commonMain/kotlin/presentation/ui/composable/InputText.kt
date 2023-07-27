@@ -56,6 +56,7 @@ fun InputText(
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
+            singleLine = maxLines == 1,
             maxLines = maxLines,
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType,

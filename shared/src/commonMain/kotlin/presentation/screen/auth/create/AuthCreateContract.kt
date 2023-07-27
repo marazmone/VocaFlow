@@ -12,6 +12,8 @@ class AuthCreateContract {
         val isLoading: Boolean = false,
         val isError: Boolean = false,
         val errorMessage: String = "",
+        val buttonEnabled: Boolean = false,
+        val showErrorPasswordDialog: Boolean = false,
     ) : BaseViewState
 
     sealed interface Action : BaseViewAction {
@@ -23,6 +25,8 @@ class AuthCreateContract {
         data class UpdateEmail(val email: String) : Action
 
         data class UpdatePassword(val password: String) : Action
+
+        data class PasswordError(val show: Boolean) : Action
     }
 
     sealed interface Effect : BaseViewEffect {
