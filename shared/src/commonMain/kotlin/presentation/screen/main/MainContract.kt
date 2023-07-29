@@ -1,18 +1,15 @@
-package presentation.screen.auth.create
+package presentation.screen.main
 
 import presentation.base.BaseViewAction
 import presentation.base.BaseViewEffect
 import presentation.base.BaseViewState
 
-class AuthCreateContract {
+class MainContract {
 
     data class State(
-        val email: String = "",
-        val password: String = "",
         val isLoading: Boolean = false,
         val isError: Boolean = false,
         val errorMessage: String = "",
-        val buttonEnabled: Boolean = false,
     ) : BaseViewState
 
     sealed interface Action : BaseViewAction {
@@ -22,14 +19,10 @@ class AuthCreateContract {
         data class Error(val errorMessage: String) : Action
 
         object Loading : Action
-
-        data class UpdateEmail(val email: String) : Action
-
-        data class UpdatePassword(val password: String) : Action
     }
 
     sealed interface Effect : BaseViewEffect {
 
-        object NavigateToMainFlow : Effect
+        object NavigateLogout : Effect
     }
 }
