@@ -27,7 +27,8 @@ import presentation.ui.composable.dialog.Dialog
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun AuthErrorPasswordDialog(
+fun AuthErrorDialog(
+    text: String,
     onDismissRequest: () -> Unit,
 ) {
     Dialog(onDismissRequest) {
@@ -58,7 +59,7 @@ fun AuthErrorPasswordDialog(
                 )
             }
             Text(
-                text = getString("auth_create_password_error"),
+                text = text,
                 modifier = Modifier
                     .padding(top = 24.dp)
                     .padding(horizontal = 32.dp)

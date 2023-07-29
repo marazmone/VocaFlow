@@ -81,6 +81,7 @@ fun InputText(
                 ),
             colors = TextFieldDefaults.textFieldColors(
                 AppTheme.colors.grayscale.gray100,
+                disabledTextColor = AppTheme.colors.grayscale.gray100.copy(alpha = 0.5f),
                 containerColor = AppTheme.colors.additional.background2,
                 disabledIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,

@@ -1,13 +1,18 @@
 package presentation.screen.auth.create
 
+import data.datasource.firebase.core.auth.FirebaseAuthUserCollisionException
 import domain.usecase.firebase.auth.FirebaseAuthCreateUserWithEmailUseCase
 import domain.usecase.firebase.auth.FirebaseAuthLoginWithEmailUseCase
+import domain.util.errorOrDefault
 import domain.util.isEmailValid
 import domain.util.isStrongPassword
+import domain.util.onFailureWithLog
+import kotlinx.coroutines.launch
 import presentation.base.BaseViewModel
 import presentation.screen.auth.create.AuthCreateContract.Action
 import presentation.screen.auth.create.AuthCreateContract.Effect
 import presentation.screen.auth.create.AuthCreateContract.State
+import presentation.text.Strings
 
 class AuthCreateViewModel(
     private val createUserWithEmailUseCase: FirebaseAuthCreateUserWithEmailUseCase,
@@ -17,17 +22,23 @@ class AuthCreateViewModel(
     override fun setInitialState(): State = State()
 
     override fun onReduceState(action: Action): State = when (action) {
+        is Action.IDLE -> currentState.copy(
+            isLoading = false,
+            isError = false,
+            errorMessage = "",
+            email = "",
+            password = "",
+        )
+
         is Action.Error -> currentState.copy(
             isLoading = false,
             isError = true,
             errorMessage = action.errorMessage,
-            showErrorPasswordDialog = false,
         )
 
         is Action.Loading -> currentState.copy(
             isLoading = true,
             isError = false,
-            showErrorPasswordDialog = false,
         )
 
         is Action.UpdateEmail -> currentState.copy(
@@ -35,20 +46,12 @@ class AuthCreateViewModel(
             isError = false,
             isLoading = false,
             buttonEnabled = action.email.isEmailValid && action.email.isNotEmpty(),
-            showErrorPasswordDialog = false,
         )
 
         is Action.UpdatePassword -> currentState.copy(
             password = action.password,
             isError = false,
             isLoading = false,
-            showErrorPasswordDialog = false,
-        )
-
-        is Action.PasswordError -> currentState.copy(
-            showErrorPasswordDialog = action.show,
-            isLoading = false,
-            isError = false,
         )
     }
 
@@ -63,17 +66,45 @@ class AuthCreateViewModel(
     fun tryCreateAccount() {
         sendAction { Action.Loading }
         if (currentState.password.isStrongPassword) {
-            createUser()
+            createOrLogin()
         } else {
-            sendAction { Action.PasswordError(true) }
+            sendAction { Action.Error(Strings.get("auth_create_password_error")) }
         }
     }
 
-    private fun createUser() {
-        // TODO: Implement this method with Firebase Auth
+    fun resetState() {
+        sendAction { Action.IDLE }
     }
 
-    fun closeErrorPasswordDialog() {
-        sendAction { Action.PasswordError(false) }
+    private fun createOrLogin() {
+        launch {
+            sendAction { Action.Loading }
+            runCatching {
+                createUserWithEmailUseCase.execute(state.value.email, state.value.password)
+            }.onFailureWithLog {
+                if (it is FirebaseAuthUserCollisionException) {
+                    login()
+                } else {
+                    sendAction { Action.Error(it.message.errorOrDefault()) }
+                }
+            }.onSuccess {
+                sendAction { Action.IDLE }
+                sendEffect { Effect.NavigateToMainFlow }
+            }
+        }
+    }
+
+    private fun login() {
+        launch {
+            sendAction { Action.Loading }
+            runCatching {
+                loginWithEmailUseCase.execute(state.value.email, state.value.password)
+            }.onFailureWithLog {
+                sendAction { Action.Error(it.message.errorOrDefault()) }
+            }.onSuccess {
+                sendAction { Action.IDLE }
+                sendEffect { Effect.NavigateToMainFlow }
+            }
+        }
     }
 }

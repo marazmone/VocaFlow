@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import presentation.screen.auth.composable.AuthErrorPasswordDialog
+import presentation.screen.auth.composable.AuthErrorDialog
 import presentation.ui.AppTheme
 
 @Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, showSystemUi = true)
@@ -15,7 +15,8 @@ fun InfoDialogPreview() {
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
-            AuthErrorPasswordDialog(
+            AuthErrorDialog(
+                text = "Error",
                 onDismissRequest = {},
             )
         }

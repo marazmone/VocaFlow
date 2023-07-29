@@ -15,7 +15,8 @@ import domain.util.listen
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import presentation.screen.auth.AuthFlowScreen
+import presentation.screen.auth.create.AuthCreateScreen
+import presentation.screen.main.MainScreen
 import presentation.screen.splash.SplashContract.Effect
 import presentation.screen.splash.SplashContract.State
 import presentation.ui.AppTheme
@@ -32,10 +33,10 @@ internal object SplashScreen : Screen, KoinComponent {
             state = viewModel.state.value,
             effects = viewModel.effects,
             onNavigateToAuthFlow = {
-                mainNavigator.replace(AuthFlowScreen)
+                mainNavigator.replace(AuthCreateScreen)
             },
             onNavigateToMainFlow = {
-                mainNavigator.replace(AuthFlowScreen)
+                mainNavigator.replace(MainScreen)
             }
         )
     }
