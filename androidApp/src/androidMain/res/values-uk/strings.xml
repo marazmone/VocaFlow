@@ -9,4 +9,18 @@
     <string name="intro_screen_3_description">Оновлений TalkGpt з преміум-матеріалами та спеціальною групою, що надає студентам, які вивчають іноземні мови, захоплюючий контент для ефективного навчання</string>
     <string name="button_next">Далі</string>
     <string name="button_get_started">Початок роботи</string>
+    <string name="create_account_title">Створити акаунт</string>
+    <string name="create_account_description">Ми раді бачити вас. Зареєструйте свій обліковий запис</string>
+    <string name="email">Електронна пошта</string>
+    <string name="password">Пароль</string>
+    <string name="button_create_account">Створити акаунт</string>
+    <string name="create_account_already_exist">У вас вже є обліковий запис?</string>
+    <string name="log_in">Увійдіть</string>
+    <string name="something_wrong">Щось пішло не так, спробуйте повторити операцію пізніше</string>
+    <string name="terms_part_1">Реєструючись, ви погоджуєтеся з нашими</string>
+    <string name="terms_part_2">Умовами</string>
+    <string name="terms_part_3">та</string>
+    <string name="terms_part_4">положеннями використання</string>
+    <string name="auth_create_password_error">Ваш пароль повинен містити щонайменше 8 символів, включаючи малу літеру, велику літеру та цифру!</string>
+    <string name="close">Закрити</string>
 </resources>

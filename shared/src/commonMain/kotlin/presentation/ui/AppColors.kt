@@ -88,9 +88,9 @@ internal val darkColors = AppColors(
     additional = AppColors.AdditionalColors(
         white = Color(0xFFFFFFFF),
         background = Color(0xFF1C1C1E),
-        background2 = Color(0xFF002380),
+        background2 = Color(0xFF2C2C2E),
         backgroundBlue = Color(0xFFDDDDDD),
-        line = Color(0xFFDDDDDD),
+        line = Color(0xFF3A3A3C),
     ),
     grayscale = AppColors.GrayscaleColors(
         gray10 = Color(0xFFF2F2F7),
@@ -100,8 +100,8 @@ internal val darkColors = AppColors(
         gray50 = Color(0xFFFFCD1A),
         gray60 = Color(0xFF09080D),
         gray70 = Color(0xFF08070C),
-        gray80 = Color(0xFF07060A),
-        gray90 = Color(0xFF060508),
+        gray80 = Color(0xFF3A3A3C),
+        gray90 = Color(0xFF2C2C2E),
         gray100 = Color(0xFFFFFFFF),
     ),
     isLight = false,
