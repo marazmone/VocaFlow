@@ -15,7 +15,7 @@ jdk = "11"
 compileSdk = "33"
 minSdk = "24"
 gms = "4.3.15"
-firebaseBoM = "32.2.0"
+firebaseBoM = "32.2.2"
 firebaseCrashlytics = "2.9.7"
 composeBom = "2023.06.01"
 
