@@ -27,6 +27,7 @@ import org.koin.core.component.inject
 import presentation.screen.auth.composable.AuthErrorDialog
 import presentation.screen.auth.composable.CreateOrLoginText
 import presentation.screen.auth.composable.TermsText
+import presentation.screen.auth.login.AuthLoginScreen
 import presentation.screen.main.MainScreen
 import presentation.text.getString
 import presentation.ui.AppTheme
@@ -46,9 +47,12 @@ internal object AuthCreateScreen : Screen, KoinComponent {
             effects = viewModel.effects,
             onUpdateEmail = { viewModel.updateEmail(it) },
             onUpdatePassword = { viewModel.updatePassword(it) },
-            onResetState = { viewModel.resetState() },
             onTryCreateAccount = { viewModel.tryCreateAccount() },
             onNavigationMainFlow = { mainNavigator.replace(MainScreen) },
+            onNavigationLoginFlow = {
+                viewModel.resetState()
+                mainNavigator.replace(AuthLoginScreen)
+            },
         )
     }
 
@@ -58,9 +62,9 @@ internal object AuthCreateScreen : Screen, KoinComponent {
         effects: Flow<AuthCreateContract.Effect>,
         onUpdateEmail: (String) -> Unit,
         onUpdatePassword: (String) -> Unit,
-        onResetState: () -> Unit,
         onTryCreateAccount: () -> Unit,
         onNavigationMainFlow: () -> Unit,
+        onNavigationLoginFlow: () -> Unit,
     ) {
         effects.listen { effect ->
             when (effect) {
@@ -145,7 +149,9 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         CreateOrLoginText(
-                            onClick = {},
+                            onClick = {
+                                onNavigationLoginFlow.invoke()
+                            },
                         )
                     }
                     TermsText(
@@ -155,9 +161,6 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                 if (state.isError) {
                     AuthErrorDialog(
                         text = state.errorMessage,
-                        onDismissRequest = {
-                            onResetState.invoke()
-                        }
                     )
                 }
             }

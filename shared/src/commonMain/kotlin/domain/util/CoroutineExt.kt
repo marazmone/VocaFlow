@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import data.datasource.firebase.core.Firebase
 import data.datasource.firebase.core.crashlytics.crashlytics
+import io.github.aakira.napier.Napier
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind.AT_MOST_ONCE
 import kotlin.contracts.contract
@@ -18,6 +19,7 @@ inline fun <T> Result<T>.onFailureWithLog(action: (exception: Throwable) -> Unit
         callsInPlace(action, AT_MOST_ONCE)
     }
     exceptionOrNull()?.let {
+        Napier.e(throwable = it, message = it.message.orEmpty())
         Firebase.crashlytics.recordException(it)
         action(it)
     }

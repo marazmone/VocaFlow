@@ -29,7 +29,7 @@ import presentation.ui.composable.dialog.Dialog
 @Composable
 fun AuthErrorDialog(
     text: String,
-    onDismissRequest: () -> Unit,
+    onDismissRequest: () -> Unit = {},
 ) {
     Dialog(onDismissRequest) {
         Column(

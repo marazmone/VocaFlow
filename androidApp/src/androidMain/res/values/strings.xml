@@ -23,4 +23,10 @@
     <string name="terms_part_4">Conditions of Use</string>
     <string name="auth_create_password_error">Your password must be at least 8 characters including a lowercase letter, an uppercase letter, and a number!</string>
     <string name="close">Close</string>
+    <string name="login_account_title">Hi, Welcome Back! 👋</string>
+    <string name="login_account_description">We are happy to see you.\nSign In to your account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="do_not_have_account">Don’t have an account?</string>
+    <string name="create_here">Create here</string>
+    <string name="account_not_found">The account was not found. Please check your email and password.</string>
 </resources>

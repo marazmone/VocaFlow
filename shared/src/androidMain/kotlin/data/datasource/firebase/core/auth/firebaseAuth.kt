@@ -30,10 +30,12 @@ actual typealias FirebaseAuthException = com.google.firebase.auth.FirebaseAuthEx
 
 actual typealias FirebaseAuthUserCollisionException = com.google.firebase.auth.FirebaseAuthUserCollisionException
 
+actual typealias FirebaseAuthInvalidUserException = com.google.firebase.auth.FirebaseAuthInvalidUserException
+
 internal fun FirebaseActionCodeSettings.toAndroid() = MainActionCodeSettings.newBuilder()
     .setUrl(url)
     .also { androidPackageName?.run { it.setAndroidPackageName(packageName, installIfNotAvailable, minimumVersion) } }
-    .also { dynamicLinkDomain?.run { it.setDynamicLinkDomain(this) } }
+    .also { dynamicLinkDomain?.run { it.dynamicLinkDomain = this } }
     .setHandleCodeInApp(canHandleCodeInApp)
     .also { iOSBundleId?.run { it.setIOSBundleId(this) } }
     .build()

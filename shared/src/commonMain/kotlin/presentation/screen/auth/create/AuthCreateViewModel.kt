@@ -45,13 +45,18 @@ class AuthCreateViewModel(
             email = action.email,
             isError = false,
             isLoading = false,
-            buttonEnabled = action.email.isEmailValid && action.email.isNotEmpty(),
+            buttonEnabled = action.email.isEmailValid
+                .and(action.email.isNotEmpty())
+                .and(state.value.password.isNotEmpty()),
         )
 
         is Action.UpdatePassword -> currentState.copy(
             password = action.password,
             isError = false,
             isLoading = false,
+            buttonEnabled = state.value.email.isEmailValid
+                .and(state.value.email.isNotEmpty())
+                .and(state.value.password.isNotEmpty()),
         )
     }
 

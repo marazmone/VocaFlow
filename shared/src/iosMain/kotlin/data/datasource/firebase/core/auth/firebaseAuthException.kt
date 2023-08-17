@@ -3,6 +3,7 @@ package data.datasource.firebase.core.auth
 import cocoapods.FirebaseAuth.FIRAuthErrorCodeAccountExistsWithDifferentCredential
 import cocoapods.FirebaseAuth.FIRAuthErrorCodeCredentialAlreadyInUse
 import cocoapods.FirebaseAuth.FIRAuthErrorCodeEmailAlreadyInUse
+import cocoapods.FirebaseAuth.FIRAuthErrorCodeInvalidUserToken
 import cocoapods.FirebaseAuth.FIRAuthErrorDomain
 import data.datasource.firebase.core.FirebaseException
 import kotlinx.cinterop.CPointer
@@ -17,6 +18,8 @@ import platform.Foundation.NSError
 actual open class FirebaseAuthException(message: String) : FirebaseException(message)
 
 actual open class FirebaseAuthUserCollisionException(message: String) : FirebaseAuthException(message)
+
+actual open class FirebaseAuthInvalidUserException(message: String) : FirebaseAuthException(message)
 
 internal fun <T, R> T.throwError(block: T.(errorPointer: CPointer<ObjCObjectVar<NSError?>>) -> R): R {
     memScoped {
@@ -35,6 +38,9 @@ internal fun NSError.toException() = when (domain) {
         FIRAuthErrorCodeEmailAlreadyInUse,
         FIRAuthErrorCodeAccountExistsWithDifferentCredential,
         FIRAuthErrorCodeCredentialAlreadyInUse -> FirebaseAuthUserCollisionException(
+            localizedDescription
+        )
+        FIRAuthErrorCodeInvalidUserToken -> FirebaseAuthInvalidUserException(
             localizedDescription
         )
 
