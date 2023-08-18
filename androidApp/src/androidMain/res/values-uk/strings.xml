@@ -29,4 +29,7 @@
     <string name="do_not_have_account">Не маєте облікового запису?</string>
     <string name="create_here">Створити тут</string>
     <string name="account_not_found">Обліковий запис не знайдено. Будь ласка, перевірте свою електронну пошту і пароль.</string>
+    <string name="auth_forgot_password">Забули пароль</string>
+    <string name="auth_forgot_password_description">Введіть адресу електронної пошти, ми надішлемо перевірочний код на електронну пошту</string>
+    <string name="continue_button">Продовжити</string>
 </resources>

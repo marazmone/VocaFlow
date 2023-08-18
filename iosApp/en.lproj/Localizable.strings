@@ -27,3 +27,6 @@ button_get_started = "Get Started";
 "do_not_have_account" = "Don’t have an account?";
 "create_here" = "Create here";
 "account_not_found" = "The account was not found. Please check your email and password.";
+"auth_forgot_password" = "Forgot Password";
+"auth_forgot_password_description" = "Enter your email, we will send a verification code to email";
+"continue_button" = "Continue";
