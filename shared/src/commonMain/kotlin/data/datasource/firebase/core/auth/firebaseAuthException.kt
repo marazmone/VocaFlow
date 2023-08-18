@@ -5,3 +5,5 @@ import data.datasource.firebase.core.FirebaseException
 expect open class FirebaseAuthException : FirebaseException
 
 expect class FirebaseAuthUserCollisionException : FirebaseAuthException
+
+expect class FirebaseAuthInvalidUserException : FirebaseAuthException

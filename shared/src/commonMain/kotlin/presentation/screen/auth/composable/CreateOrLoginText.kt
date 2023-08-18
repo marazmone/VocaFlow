@@ -47,3 +47,34 @@ fun CreateOrLoginText(
         textAlign = TextAlign.Center,
     )
 }
+
+@Composable
+fun LoginOrCreateText(
+    onClick: () -> Unit,
+) {
+    Text(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp)
+            .clip(RoundedCornerShape(6.dp))
+            .clickable {
+                onClick.invoke()
+            }
+            .padding(vertical = 12.dp),
+        text = buildAnnotatedString {
+            append(getString("do_not_have_account"))
+            append(" ")
+            withStyle(
+                SpanStyle(
+                    color = AppTheme.colors.main.primary,
+                    textDecoration = TextDecoration.Underline,
+                )
+            ) {
+                append(getString("create_here"))
+            }
+        },
+        color = AppTheme.colors.grayscale.gray40,
+        style = AppTheme.typography.bodyMediumMedium,
+        textAlign = TextAlign.Center,
+    )
+}
