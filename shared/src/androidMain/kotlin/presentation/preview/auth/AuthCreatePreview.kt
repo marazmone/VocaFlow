@@ -20,6 +20,7 @@ fun AuthCreateScreenPreview() {
             onTryCreateAccount = {},
             onNavigationMainFlow = {},
             onNavigationLoginFlow = {},
+            onResetState = {},
         )
     }
 }
@@ -39,6 +40,7 @@ fun AuthCreateScreenPreview_Dark() {
             onTryCreateAccount = {},
             onNavigationMainFlow = {},
             onNavigationLoginFlow = {},
+            onResetState = {},
         )
     }
 }

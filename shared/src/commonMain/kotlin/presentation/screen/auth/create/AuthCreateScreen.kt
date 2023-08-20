@@ -45,13 +45,24 @@ internal object AuthCreateScreen : Screen, KoinComponent {
         AuthCreateScreenWidget(
             state = viewModel.state.value,
             effects = viewModel.effects,
-            onUpdateEmail = { viewModel.updateEmail(it) },
-            onUpdatePassword = { viewModel.updatePassword(it) },
-            onTryCreateAccount = { viewModel.tryCreateAccount() },
-            onNavigationMainFlow = { mainNavigator.replace(MainScreen) },
+            onUpdateEmail = {
+                viewModel.updateEmail(it)
+            },
+            onUpdatePassword = {
+                viewModel.updatePassword(it)
+            },
+            onTryCreateAccount = {
+                viewModel.tryCreateAccount()
+            },
+            onNavigationMainFlow = {
+                mainNavigator.replace(MainScreen)
+            },
             onNavigationLoginFlow = {
                 viewModel.resetState()
                 mainNavigator.replace(AuthLoginScreen)
+            },
+            onResetState = {
+                viewModel.resetState()
             },
         )
     }
@@ -65,6 +76,7 @@ internal object AuthCreateScreen : Screen, KoinComponent {
         onTryCreateAccount: () -> Unit,
         onNavigationMainFlow: () -> Unit,
         onNavigationLoginFlow: () -> Unit,
+        onResetState: () -> Unit,
     ) {
         effects.listen { effect ->
             when (effect) {
@@ -161,7 +173,9 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                 if (state.isError) {
                     AuthErrorDialog(
                         text = state.errorMessage,
-                    )
+                    ) {
+                        onResetState.invoke()
+                    }
                 }
             }
         }
