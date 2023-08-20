@@ -12,11 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -26,8 +29,12 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.moriatsushi.insetsx.navigationBarsPadding
 import com.moriatsushi.insetsx.statusBarsPadding
+import domain.util.listen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import presentation.screen.auth.composable.AuthErrorDialog
+import presentation.screen.auth.composable.AuthSuccessDialog
+import presentation.screen.auth.forgot.AuthForgotPasswordContract.Effect.NavigatePopBack
 import presentation.text.getString
 import presentation.ui.AppTheme
 import presentation.ui.composable.FullscreenLoader
@@ -42,97 +49,133 @@ object AuthForgotPasswordScreen : Screen, KoinComponent {
         val mainNavigator = LocalNavigator.currentOrThrow
         val viewModel by inject<AuthForgotPasswordViewModel>()
 
+        viewModel.effects.listen { effect ->
+            when (effect) {
+                is NavigatePopBack -> {
+                    mainNavigator.pop()
+                }
+            }
+        }
+
         AuthForgotPasswordScreenWidget(
-            state = AuthForgotPasswordContract.State(),
+            state = viewModel.state.value,
             onClickBack = {
-                mainNavigator.pop()
+                viewModel.popBack()
             },
-            onUpdateEmail = { viewModel.updateEmail(it) },
-            onContinue = {},
+            onUpdateEmail = {
+                viewModel.updateEmail(it)
+            },
+            onContinue = {
+                viewModel.resetPassword()
+            },
+            onResetState = {
+                viewModel.resetState()
+            },
         )
     }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     fun AuthForgotPasswordScreenWidget(
         state: AuthForgotPasswordContract.State,
         onClickBack: () -> Unit,
         onUpdateEmail: (String) -> Unit,
         onContinue: () -> Unit,
+        onResetState: () -> Unit,
     ) {
+        val keyboardController = LocalSoftwareKeyboardController.current
+
         FullscreenLoader(isLoading = state.isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(AppTheme.colors.additional.background)
-                    .statusBarsPadding()
-                    .navigationBarsPadding(),
-            ) {
+            Surface {
                 Box(
                     modifier = Modifier
-                        .padding(top = 16.dp, start = 24.dp)
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .background(color = AppTheme.colors.grayscale.gray90)
-                        .clickable {
-                            onClickBack.invoke()
-                        },
+                        .fillMaxSize()
+                        .background(AppTheme.colors.additional.background)
+                        .statusBarsPadding()
+                        .navigationBarsPadding(),
                 ) {
-                    Icon(
-                        imageVector = IconArrowLeft.icon,
-                        contentDescription = null,
-                        tint = AppTheme.colors.additional.text,
+                    Box(
                         modifier = Modifier
-                            .align(Alignment.Center),
-                    )
+                            .padding(top = 16.dp, start = 24.dp)
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(color = AppTheme.colors.grayscale.gray90)
+                            .clickable {
+                                onClickBack.invoke()
+                            },
+                    ) {
+                        Icon(
+                            imageVector = IconArrowLeft.icon,
+                            contentDescription = null,
+                            tint = AppTheme.colors.additional.text,
+                            modifier = Modifier
+                                .align(Alignment.Center),
+                        )
+                    }
+                    Column {
+                        Spacer(modifier = Modifier.padding(top = 68.dp))
+                        Text(
+                            text = getString("auth_forgot_password"),
+                            style = AppTheme.typography.h5Semi,
+                            color = AppTheme.colors.additional.text,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 50.dp),
+                        )
+                        Spacer(modifier = Modifier.padding(top = 8.dp))
+                        Text(
+                            text = getString("auth_forgot_password_description"),
+                            style = AppTheme.typography.bodyMediumMedium,
+                            color = AppTheme.colors.grayscale.gray40,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 50.dp),
+                        )
+                        Spacer(modifier = Modifier.padding(top = 36.dp))
+                        InputText(
+                            label = getString("email"),
+                            placeholder = getString("email"),
+                            maxLines = 1,
+                            imeAction = ImeAction.Next,
+                            keyboardType = KeyboardType.Email,
+                            inputValue = state.email,
+                            onInputValueChange = {
+                                onUpdateEmail.invoke(it)
+                            },
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp)
+                                .fillMaxWidth(),
+                        )
+                        Spacer(modifier = Modifier.padding(top = 66.dp))
+                        PrimaryButton(
+                            enabled = state.buttonEnabled,
+                            text = getString("continue_button"),
+                            onClick = {
+                                keyboardController?.hide()
+                                onContinue.invoke()
+                            },
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp)
+                                .fillMaxWidth()
+                                .height(56.dp),
+                        )
+                    }
                 }
-                Column {
-                    Spacer(modifier = Modifier.padding(top = 68.dp))
-                    Text(
-                        text = getString("auth_forgot_password"),
-                        style = AppTheme.typography.h5Semi,
-                        color = AppTheme.colors.additional.text,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 50.dp),
-                    )
-                    Spacer(modifier = Modifier.padding(top = 8.dp))
-                    Text(
-                        text = getString("auth_forgot_password_description"),
-                        style = AppTheme.typography.bodyMediumMedium,
-                        color = AppTheme.colors.grayscale.gray40,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 50.dp),
-                    )
-                    Spacer(modifier = Modifier.padding(top = 36.dp))
-                    InputText(
-                        label = getString("email"),
-                        placeholder = getString("email"),
-                        maxLines = 1,
-                        imeAction = ImeAction.Next,
-                        keyboardType = KeyboardType.Email,
-                        inputValue = state.email,
-                        onInputValueChange = {
-                            onUpdateEmail.invoke(it)
-                        },
-                        modifier = Modifier
-                            .padding(horizontal = 24.dp)
-                            .fillMaxWidth(),
-                    )
-                    Spacer(modifier = Modifier.padding(top = 66.dp))
-                    PrimaryButton(
-                        enabled = state.buttonEnabled,
-                        text = getString("continue_button"),
-                        onClick = {
-                            onContinue.invoke()
-                        },
-                        modifier = Modifier
-                            .padding(horizontal = 24.dp)
-                            .fillMaxWidth()
-                            .height(56.dp),
-                    )
+                if (state.isError) {
+                    AuthErrorDialog(
+                        text = state.errorMessage,
+                    ) {
+                        onResetState.invoke()
+                    }
+                }
+                if (state.isSuccess) {
+                    AuthSuccessDialog(
+                        text = getString("reset_password_success"),
+                    ) {
+                        onClickBack.invoke()
+                    }
                 }
             }
         }

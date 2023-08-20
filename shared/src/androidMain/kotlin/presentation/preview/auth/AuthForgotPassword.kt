@@ -16,6 +16,7 @@ fun AuthForgotPasswordScreenWidgetPreview() {
             onClickBack = {},
             onUpdateEmail = {},
             onContinue = {},
+            onResetState = {},
         )
     }
 }
@@ -32,6 +33,7 @@ fun AuthForgotPasswordScreenWidgetPreview_Dark() {
             onClickBack = {},
             onUpdateEmail = {},
             onContinue = {},
+            onResetState = {},
         )
     }
 }

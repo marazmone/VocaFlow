@@ -20,6 +20,8 @@ fun AuthLoginScreenPreview() {
             onNavigationMainFlow = {},
             onNavigationCreateAccountFlow = {},
             onLogIn = {},
+            onClickForgot = {},
+            onResetState = {},
         )
     }
 }
@@ -39,6 +41,8 @@ fun AuthLoginScreenPreview_Dark() {
             onNavigationMainFlow = {},
             onNavigationCreateAccountFlow = {},
             onLogIn = {},
+            onClickForgot = {},
+            onResetState = {},
         )
     }
 }
