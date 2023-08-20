@@ -31,6 +31,7 @@ import presentation.screen.auth.composable.AuthErrorDialog
 import presentation.screen.auth.composable.LoginOrCreateText
 import presentation.screen.auth.composable.TermsText
 import presentation.screen.auth.create.AuthCreateScreen
+import presentation.screen.auth.forgot.AuthForgotPasswordScreen
 import presentation.screen.main.MainScreen
 import presentation.text.getString
 import presentation.ui.AppTheme
@@ -48,13 +49,28 @@ internal object AuthLoginScreen : Screen, KoinComponent {
         AuthLoginScreenWidget(
             state = viewModel.state.value,
             effects = viewModel.effects,
-            onUpdateEmail = { viewModel.updateEmail(it) },
-            onUpdatePassword = { viewModel.updatePassword(it) },
-            onLogIn = { viewModel.login() },
-            onNavigationMainFlow = { mainNavigator.replace(MainScreen) },
+            onUpdateEmail = {
+                viewModel.updateEmail(it)
+            },
+            onUpdatePassword = {
+                viewModel.updatePassword(it)
+            },
+            onLogIn = {
+                viewModel.login()
+            },
+            onNavigationMainFlow = {
+                mainNavigator.replace(MainScreen)
+            },
             onNavigationCreateAccountFlow = {
                 viewModel.resetState()
                 mainNavigator.replace(AuthCreateScreen)
+            },
+            onClickForgot = {
+                viewModel.resetState()
+                mainNavigator.push(AuthForgotPasswordScreen)
+            },
+            onResetState = {
+                viewModel.resetState()
             },
         )
     }
@@ -68,6 +84,8 @@ internal object AuthLoginScreen : Screen, KoinComponent {
         onLogIn: () -> Unit,
         onNavigationMainFlow: () -> Unit,
         onNavigationCreateAccountFlow: () -> Unit,
+        onClickForgot: () -> Unit,
+        onResetState: () -> Unit,
     ) {
         effects.listen { effect ->
             when (effect) {
@@ -150,7 +168,9 @@ internal object AuthLoginScreen : Screen, KoinComponent {
                                 .clickable(
                                     indication = null,
                                     interactionSource = remember { MutableInteractionSource() }
-                                ) {},
+                                ) {
+                                    onClickForgot.invoke()
+                                },
                         )
                         Spacer(modifier = Modifier.height(34.dp))
                         PrimaryButton(
@@ -178,7 +198,9 @@ internal object AuthLoginScreen : Screen, KoinComponent {
                 if (state.isError) {
                     AuthErrorDialog(
                         text = state.errorMessage,
-                    )
+                    ) {
+                        onResetState.invoke()
+                    }
                 }
             }
         }

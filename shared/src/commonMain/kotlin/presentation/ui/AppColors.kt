@@ -27,6 +27,7 @@ data class AppColors(
         val background2: Color,
         val backgroundBlue: Color,
         val line: Color,
+        val text: Color,
     )
 
     data class GrayscaleColors(
@@ -59,6 +60,7 @@ internal val lightColors = AppColors(
         background2 = Color(0xFFFAFAFA),
         backgroundBlue = Color(0xFFD8E5FE),
         line = Color(0xFFDDDDDD),
+        text = Color(0xFF000000),
     ),
     grayscale = AppColors.GrayscaleColors(
         gray10 = Color(0xFFF2F2F7),
@@ -69,7 +71,7 @@ internal val lightColors = AppColors(
         gray60 = Color(0xFF09080D),
         gray70 = Color(0xFF08070C),
         gray80 = Color(0xFF07060A),
-        gray90 = Color(0xFF060508),
+        gray90 = Color(0xFFFFFFFF),
         gray100 = Color(0xFF1C1C1E),
     ),
     isLight = true,
@@ -91,6 +93,7 @@ internal val darkColors = AppColors(
         background2 = Color(0xFF2C2C2E),
         backgroundBlue = Color(0xFFDDDDDD),
         line = Color(0xFF3A3A3C),
+        text = Color(0xFFFFFFFF),
     ),
     grayscale = AppColors.GrayscaleColors(
         gray10 = Color(0xFFF2F2F7),

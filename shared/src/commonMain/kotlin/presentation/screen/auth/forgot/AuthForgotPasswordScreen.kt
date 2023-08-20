@@ -1,6 +1,7 @@
-package presentation.screen.auth.create
+package presentation.screen.auth.forgot
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,10 +9,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -19,47 +27,46 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.moriatsushi.insetsx.navigationBarsPadding
 import com.moriatsushi.insetsx.statusBarsPadding
 import domain.util.listen
-import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import presentation.screen.auth.composable.AuthErrorDialog
-import presentation.screen.auth.composable.CreateOrLoginText
-import presentation.screen.auth.composable.TermsText
-import presentation.screen.auth.login.AuthLoginScreen
-import presentation.screen.main.MainScreen
+import presentation.screen.auth.composable.AuthSuccessDialog
+import presentation.screen.auth.forgot.AuthForgotPasswordContract.Effect.NavigatePopBack
 import presentation.text.getString
 import presentation.ui.AppTheme
 import presentation.ui.composable.FullscreenLoader
 import presentation.ui.composable.InputText
 import presentation.ui.composable.PrimaryButton
+import presentation.ui.icons.IconArrowLeft
 
-internal object AuthCreateScreen : Screen, KoinComponent {
+object AuthForgotPasswordScreen : Screen, KoinComponent {
 
     @Composable
     override fun Content() {
         val mainNavigator = LocalNavigator.currentOrThrow
-        val viewModel by inject<AuthCreateViewModel>()
+        val viewModel by inject<AuthForgotPasswordViewModel>()
 
-        AuthCreateScreenWidget(
+        viewModel.effects.listen { effect ->
+            when (effect) {
+                is NavigatePopBack -> {
+                    mainNavigator.pop()
+                }
+            }
+        }
+
+        AuthForgotPasswordScreenWidget(
             state = viewModel.state.value,
-            effects = viewModel.effects,
+            onClickBack = {
+                viewModel.popBack()
+            },
             onUpdateEmail = {
                 viewModel.updateEmail(it)
             },
-            onUpdatePassword = {
-                viewModel.updatePassword(it)
-            },
-            onTryCreateAccount = {
-                viewModel.tryCreateAccount()
-            },
-            onNavigationMainFlow = {
-                mainNavigator.replace(MainScreen)
-            },
-            onNavigationLoginFlow = {
-                viewModel.resetState()
-                mainNavigator.replace(AuthLoginScreen)
+            onContinue = {
+                viewModel.resetPassword()
             },
             onResetState = {
                 viewModel.resetState()
@@ -67,24 +74,16 @@ internal object AuthCreateScreen : Screen, KoinComponent {
         )
     }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun AuthCreateScreenWidget(
-        state: AuthCreateContract.State,
-        effects: Flow<AuthCreateContract.Effect>,
+    fun AuthForgotPasswordScreenWidget(
+        state: AuthForgotPasswordContract.State,
+        onClickBack: () -> Unit,
         onUpdateEmail: (String) -> Unit,
-        onUpdatePassword: (String) -> Unit,
-        onTryCreateAccount: () -> Unit,
-        onNavigationMainFlow: () -> Unit,
-        onNavigationLoginFlow: () -> Unit,
+        onContinue: () -> Unit,
         onResetState: () -> Unit,
     ) {
-        effects.listen { effect ->
-            when (effect) {
-                is AuthCreateContract.Effect.NavigateToMainFlow -> {
-                    onNavigationMainFlow.invoke()
-                }
-            }
-        }
+        val keyboardController = LocalSoftwareKeyboardController.current
 
         FullscreenLoader(isLoading = state.isLoading) {
             Surface {
@@ -92,32 +91,49 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                     modifier = Modifier
                         .fillMaxSize()
                         .background(AppTheme.colors.additional.background)
-                        .statusBarsPadding(),
+                        .statusBarsPadding()
+                        .navigationBarsPadding(),
                 ) {
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .padding(top = 16.dp, start = 24.dp)
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(color = AppTheme.colors.grayscale.gray90)
+                            .clickable {
+                                onClickBack.invoke()
+                            },
                     ) {
-                        Spacer(modifier = Modifier.height(56.dp))
-                        Text(
-                            text = getString("create_account_title"),
+                        Icon(
+                            imageVector = IconArrowLeft.icon,
+                            contentDescription = null,
+                            tint = AppTheme.colors.additional.text,
                             modifier = Modifier
-                                .fillMaxWidth(),
-                            style = AppTheme.typography.h5Semi,
-                            color = AppTheme.colors.grayscale.gray100,
-                            textAlign = TextAlign.Center,
+                                .align(Alignment.Center),
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+                    Column {
+                        Spacer(modifier = Modifier.padding(top = 68.dp))
                         Text(
-                            text = getString("create_account_description"),
+                            text = getString("auth_forgot_password"),
+                            style = AppTheme.typography.h5Semi,
+                            color = AppTheme.colors.additional.text,
+                            textAlign = TextAlign.Center,
                             modifier = Modifier
-                                .padding(horizontal = 64.dp)
-                                .fillMaxWidth(),
+                                .fillMaxWidth()
+                                .padding(horizontal = 50.dp),
+                        )
+                        Spacer(modifier = Modifier.padding(top = 8.dp))
+                        Text(
+                            text = getString("auth_forgot_password_description"),
                             style = AppTheme.typography.bodyMediumMedium,
                             color = AppTheme.colors.grayscale.gray40,
                             textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 50.dp),
                         )
-                        Spacer(modifier = Modifier.height(36.dp))
+                        Spacer(modifier = Modifier.padding(top = 36.dp))
                         InputText(
                             label = getString("email"),
                             placeholder = getString("email"),
@@ -132,49 +148,33 @@ internal object AuthCreateScreen : Screen, KoinComponent {
                                 .padding(horizontal = 24.dp)
                                 .fillMaxWidth(),
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        InputText(
-                            label = getString("password"),
-                            placeholder = getString("password"),
-                            maxLines = 1,
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done,
-                            inputValue = state.password,
-                            onInputValueChange = {
-                                onUpdatePassword.invoke(it)
-                            },
-                            modifier = Modifier
-                                .padding(horizontal = 24.dp)
-                                .fillMaxWidth(),
-                        )
-                        Spacer(modifier = Modifier.height(68.dp))
+                        Spacer(modifier = Modifier.padding(top = 66.dp))
                         PrimaryButton(
                             enabled = state.buttonEnabled,
-                            text = getString("button_create_account"),
+                            text = getString("continue_button"),
                             onClick = {
-                                onTryCreateAccount.invoke()
+                                keyboardController?.hide()
+                                onContinue.invoke()
                             },
                             modifier = Modifier
                                 .padding(horizontal = 24.dp)
                                 .fillMaxWidth()
                                 .height(56.dp),
                         )
-                        Spacer(modifier = Modifier.height(24.dp))
-                        CreateOrLoginText(
-                            onClick = {
-                                onNavigationLoginFlow.invoke()
-                            },
-                        )
                     }
-                    TermsText(
-                        onClick = {},
-                    )
                 }
                 if (state.isError) {
                     AuthErrorDialog(
                         text = state.errorMessage,
                     ) {
                         onResetState.invoke()
+                    }
+                }
+                if (state.isSuccess) {
+                    AuthSuccessDialog(
+                        text = getString("reset_password_success"),
+                    ) {
+                        onClickBack.invoke()
                     }
                 }
             }
