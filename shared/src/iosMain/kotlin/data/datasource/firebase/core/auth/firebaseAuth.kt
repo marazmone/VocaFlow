@@ -2,12 +2,16 @@ package data.datasource.firebase.core.auth
 
 import cocoapods.FirebaseAuth.FIRActionCodeSettings
 import cocoapods.FirebaseAuth.FIRAuth
+import data.datasource.firebase.core.Firebase
 import data.datasource.firebase.core.await
 import data.datasource.firebase.core.awaitResult
 import data.model.firebase.auth.FirebaseActionCodeSettings
 import data.model.firebase.auth.FirebaseAuthResultData
 import data.model.firebase.auth.FirebaseAuthUserData
 import platform.Foundation.NSURL
+
+actual val Firebase.auth
+    get() = FirebaseAuth(FIRAuth.auth())
 
 actual class FirebaseAuth internal constructor(private val auth: FIRAuth) {
     actual val currentUser: FirebaseAuthUserData?
@@ -40,6 +44,8 @@ actual class FirebaseAuth internal constructor(private val auth: FIRAuth) {
     actual suspend fun logout() {
         auth.throwError { signOut(it) }
     }
+
+    actual fun useEmulator(host: String, port: Int) = auth.useEmulatorWithHost(host, port.toLong())
 }
 
 internal fun FirebaseActionCodeSettings.toIos() = FIRActionCodeSettings().also {

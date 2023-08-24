@@ -1,7 +1,10 @@
 [versions]
 coilCompose = "2.4.0"
+core = "1.5.0"
 gradle = "7.4.2"
 insetsx = "0.1.0-alpha10"
+junit = "1.1.5"
+junitVersion = "4.13.2"
 koinCore = "3.4.3"
 kotlin = "1.8.20"
 compose = "1.4.1"
@@ -9,7 +12,9 @@ composeActivity = "1.7.2"
 appCompat = "1.6.1"
 androidxCore = "1.10.1"
 detekt = "1.23.1"
+kotlinxCoroutinesCore = "1.7.1"
 napier = "2.6.1"
+runner = "1.5.2"
 voyagerNavigator = "1.0.0-rc06"
 jdk = "11"
 compileSdk = "34"
@@ -24,14 +29,20 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose"
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+core = { module = "androidx.test:core", version.ref = "core" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 detektGradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 detektFormat = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detektCli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
 insetsx = { module = "com.moriatsushi.insetsx:insetsx", version.ref = "insetsx" }
+junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
+junit-junit = { module = "junit:junit", version.ref = "junitVersion" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesCore" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+runner = { module = "androidx.test:runner", version.ref = "runner" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerNavigator" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBoM" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
