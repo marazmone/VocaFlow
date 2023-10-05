@@ -8,6 +8,7 @@ import data.datasource.firebase.core.awaitResult
 import data.model.firebase.auth.FirebaseActionCodeSettings
 import data.model.firebase.auth.FirebaseAuthResultData
 import data.model.firebase.auth.FirebaseAuthUserData
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSURL
 
 actual val Firebase.auth
@@ -41,6 +42,7 @@ actual class FirebaseAuth internal constructor(private val auth: FIRAuth) {
         }
     }
 
+    @OptIn(ExperimentalForeignApi::class)
     actual suspend fun logout() {
         auth.throwError { signOut(it) }
     }

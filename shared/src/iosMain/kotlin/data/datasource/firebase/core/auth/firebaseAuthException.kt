@@ -7,6 +7,7 @@ import cocoapods.FirebaseAuth.FIRAuthErrorCodeInvalidUserToken
 import cocoapods.FirebaseAuth.FIRAuthErrorDomain
 import data.datasource.firebase.core.FirebaseException
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
@@ -21,6 +22,7 @@ actual open class FirebaseAuthUserCollisionException(message: String) : Firebase
 
 actual open class FirebaseAuthInvalidUserException(message: String) : FirebaseAuthException(message)
 
+@OptIn(ExperimentalForeignApi::class)
 internal fun <T, R> T.throwError(block: T.(errorPointer: CPointer<ObjCObjectVar<NSError?>>) -> R): R {
     memScoped {
         val errorPointer: CPointer<ObjCObjectVar<NSError?>> = alloc<ObjCObjectVar<NSError?>>().ptr

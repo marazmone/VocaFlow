@@ -1,4 +1,5 @@
 @file:JvmName("tests")
+
 package data.datasource.firebase.core.auth
 
 import androidx.test.platform.app.InstrumentationRegistry

@@ -17,7 +17,7 @@ fun getString(key: String, quantity: Int): String {
     return if (LocalInspectionMode.current) {
         key
     } else {
-        Strings.get(key)
+        Strings.get(key, quantity)
     }
 }
 
@@ -26,6 +26,6 @@ fun getString(key: String, vararg args: Any): String {
     return if (LocalInspectionMode.current) {
         key
     } else {
-        Strings.format(key)
+        Strings.format(key, args)
     }
 }

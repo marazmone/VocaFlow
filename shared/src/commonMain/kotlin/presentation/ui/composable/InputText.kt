@@ -79,10 +79,11 @@ fun InputText(
                     color = AppTheme.colors.additional.line,
                     shape = RoundedCornerShape,
                 ),
-            colors = TextFieldDefaults.textFieldColors(
+            colors = TextFieldDefaults.colors(
                 AppTheme.colors.grayscale.gray100,
                 disabledTextColor = AppTheme.colors.grayscale.gray100.copy(alpha = 0.5f),
-                containerColor = AppTheme.colors.additional.background2,
+                focusedContainerColor = AppTheme.colors.additional.background2,
+                unfocusedContainerColor = AppTheme.colors.additional.background2,
                 disabledIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
