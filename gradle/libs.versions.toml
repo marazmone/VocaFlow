@@ -1,22 +1,22 @@
 [versions]
 coilCompose = "2.4.0"
 core = "1.5.0"
-gradle = "7.4.2"
+gradle = "8.1.2"
 insetsx = "0.1.0-alpha10"
 junit = "1.1.5"
 junitVersion = "4.13.2"
 koinCore = "3.5.0"
-kotlin = "1.8.20"
-compose = "1.4.1"
+kotlin = "1.9.10"
+compose = "1.5.2"
 composeActivity = "1.8.0"
 appCompat = "1.6.1"
 androidxCore = "1.12.0"
 detekt = "1.23.1"
-kotlinxCoroutinesCore = "1.7.1"
+kotlinxCoroutinesCore = "1.7.3"
 napier = "2.6.1"
 runner = "1.5.2"
 voyagerNavigator = "1.0.0-rc07"
-jdk = "11"
+jdk = "17"
 compileSdk = "34"
 minSdk = "24"
 gms = "4.3.15"
@@ -25,6 +25,8 @@ firebaseCrashlytics = "2.9.7"
 composeBom = "2023.10.00"
 
 [libraries]
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
