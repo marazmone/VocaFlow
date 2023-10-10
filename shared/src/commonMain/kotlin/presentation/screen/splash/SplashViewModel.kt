@@ -3,11 +3,12 @@ package presentation.screen.splash
 import domain.usecase.firebase.auth.FirebaseAuthGetCurrentUserUseCase
 import domain.util.errorOrDefault
 import domain.util.onFailureWithLog
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import presentation.base.BaseViewModel
-import presentation.screen.splash.SplashContract.Action
-import presentation.screen.splash.SplashContract.Effect
-import presentation.screen.splash.SplashContract.State
+import presentation.screen.splash.SplashScreenContract.Action
+import presentation.screen.splash.SplashScreenContract.Effect
+import presentation.screen.splash.SplashScreenContract.State
 
 @Suppress("MagicNumber")
 class SplashViewModel(
@@ -16,6 +17,7 @@ class SplashViewModel(
 
     init {
         launch {
+            delay(1_500L)
             checkAuth()
         }
     }

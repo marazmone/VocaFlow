@@ -4,7 +4,7 @@ import presentation.base.BaseViewAction
 import presentation.base.BaseViewEffect
 import presentation.base.BaseViewState
 
-class SplashContract {
+class SplashScreenContract {
 
     data class State(
         val isError: Boolean = false,
@@ -18,8 +18,8 @@ class SplashContract {
 
     sealed interface Effect : BaseViewEffect {
 
-        object NavigateToAuthFlow : Effect
+        data object NavigateToAuthFlow : Effect
 
-        object NavigateToMainFlow : Effect
+        data object NavigateToMainFlow : Effect
     }
 }
