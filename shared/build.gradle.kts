@@ -23,10 +23,10 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        pod("FirebaseAnalytics")
-        pod("FirebaseAuth")
-        pod("FirebaseCrashlytics")
-        pod("FirebaseCore")
+        pod("FirebaseAnalytics", linkOnly = true)
+        pod("FirebaseAuth", linkOnly = true)
+        pod("FirebaseCrashlytics", linkOnly = true)
+        pod("FirebaseCore", linkOnly = true)
     }
 
     sourceSets {

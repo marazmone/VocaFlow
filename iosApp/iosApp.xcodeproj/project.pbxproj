@@ -140,7 +140,7 @@
 				7555FF79242A565900829871 /* Resources */,
 				F85CB1118929364A9C6EFABC /* Frameworks */,
 				2134C13603D0B299603D9F49 /* [CP] Copy Pods Resources */,
-				6B39CD80B4BE80078B0337C5 /* [CP] Embed Pods Frameworks */,
+				3DBC86348C73E874D1375625 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,7 +218,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B39CD80B4BE80078B0337C5 /* [CP] Embed Pods Frameworks */ = {
+		3DBC86348C73E874D1375625 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
