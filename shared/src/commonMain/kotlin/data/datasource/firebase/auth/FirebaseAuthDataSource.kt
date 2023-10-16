@@ -1,18 +1,18 @@
 package data.datasource.firebase.auth
 
-import data.model.firebase.auth.FirebaseActionCodeSettings
-import data.model.firebase.auth.FirebaseAuthResultData
-import data.model.firebase.auth.FirebaseAuthUserData
+import dev.gitlive.firebase.auth.ActionCodeSettings
+import dev.gitlive.firebase.auth.AuthResult
+import dev.gitlive.firebase.auth.FirebaseUser
 
 interface FirebaseAuthDataSource {
 
-    val currentUser: FirebaseAuthUserData?
+    val currentUser: FirebaseUser?
 
-    suspend fun createUserWithEmailAndPassword(email: String, password: String): FirebaseAuthResultData
+    suspend fun createUserWithEmailAndPassword(email: String, password: String): AuthResult
 
-    suspend fun loginWithEmailAndPassword(email: String, password: String): FirebaseAuthResultData
+    suspend fun loginWithEmailAndPassword(email: String, password: String): AuthResult
 
-    suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: FirebaseActionCodeSettings? = null)
+    suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: ActionCodeSettings? = null)
 
     suspend fun logout()
 }

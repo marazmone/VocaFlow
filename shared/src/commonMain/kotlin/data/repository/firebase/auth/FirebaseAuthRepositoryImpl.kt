@@ -1,8 +1,8 @@
 package data.repository.firebase.auth
 
 import data.datasource.firebase.auth.FirebaseAuthDataSource
-import data.model.firebase.auth.FirebaseActionCodeSettings
-import data.model.firebase.auth.toDomain
+import data.model.firebase.toDomain
+import dev.gitlive.firebase.auth.ActionCodeSettings
 import domain.model.firebase.auth.FirebaseAuthResult
 import domain.model.firebase.auth.FirebaseAuthUser
 import domain.repository.FirebaseAuthRepository
@@ -21,7 +21,7 @@ class FirebaseAuthRepositoryImpl(
         return firebaseAuthDataSource.loginWithEmailAndPassword(email, password).toDomain()
     }
 
-    override suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: FirebaseActionCodeSettings?) {
+    override suspend fun sendPasswordResetEmail(email: String, actionCodeSettings: ActionCodeSettings?) {
         firebaseAuthDataSource.sendPasswordResetEmail(email)
     }
 

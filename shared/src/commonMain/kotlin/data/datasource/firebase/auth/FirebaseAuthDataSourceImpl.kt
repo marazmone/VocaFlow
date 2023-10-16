@@ -1,31 +1,31 @@
 package data.datasource.firebase.auth
 
-import data.datasource.firebase.core.auth.FirebaseAuth
-import data.model.firebase.auth.FirebaseActionCodeSettings
-import data.model.firebase.auth.FirebaseAuthResultData
-import data.model.firebase.auth.FirebaseAuthUserData
+import dev.gitlive.firebase.auth.ActionCodeSettings
+import dev.gitlive.firebase.auth.AuthResult
+import dev.gitlive.firebase.auth.FirebaseAuth
+import dev.gitlive.firebase.auth.FirebaseUser
 
 class FirebaseAuthDataSourceImpl(
     private val firebaseAuth: FirebaseAuth,
 ) : FirebaseAuthDataSource {
 
-    override val currentUser: FirebaseAuthUserData?
+    override val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
 
-    override suspend fun createUserWithEmailAndPassword(email: String, password: String): FirebaseAuthResultData =
+    override suspend fun createUserWithEmailAndPassword(email: String, password: String): AuthResult =
         firebaseAuth.createUserWithEmailAndPassword(email, password)
 
-    override suspend fun loginWithEmailAndPassword(email: String, password: String): FirebaseAuthResultData =
-        firebaseAuth.loginWithEmailAndPassword(email, password)
+    override suspend fun loginWithEmailAndPassword(email: String, password: String): AuthResult =
+        firebaseAuth.signInWithEmailAndPassword(email, password)
 
     override suspend fun sendPasswordResetEmail(
         email: String,
-        actionCodeSettings: FirebaseActionCodeSettings?
+        actionCodeSettings: ActionCodeSettings?
     ) {
         firebaseAuth.sendPasswordResetEmail(email, actionCodeSettings)
     }
 
     override suspend fun logout() {
-        firebaseAuth.logout()
+        firebaseAuth.signOut()
     }
 }

@@ -1,6 +1,6 @@
 package presentation.screen.auth.create
 
-import data.datasource.firebase.core.auth.FirebaseAuthUserCollisionException
+import dev.gitlive.firebase.auth.FirebaseAuthUserCollisionException
 import domain.usecase.firebase.auth.FirebaseAuthCreateUserWithEmailUseCase
 import domain.usecase.firebase.auth.FirebaseAuthLoginWithEmailUseCase
 import domain.util.errorOrDefault

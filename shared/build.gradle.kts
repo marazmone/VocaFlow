@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.serialization)
     alias(libs.plugins.nativeCocoapod)
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose)
@@ -50,6 +51,13 @@ kotlin {
 
                 // Logger
                 implementation(libs.napier)
+
+                // Firebase
+                implementation("dev.gitlive:firebase-auth:1.10.0")
+                implementation("dev.gitlive:firebase-crashlytics:1.10.0")
+
+                // Kotlin
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
             }
         }
 
