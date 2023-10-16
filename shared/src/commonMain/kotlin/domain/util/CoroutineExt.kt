@@ -2,8 +2,8 @@ package domain.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import data.datasource.firebase.core.Firebase
-import data.datasource.firebase.core.crashlytics.crashlytics
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.crashlytics.crashlytics
 import io.github.aakira.napier.Napier
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind.AT_MOST_ONCE

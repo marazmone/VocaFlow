@@ -1,6 +1,6 @@
 package presentation.screen.auth.forgot
 
-import data.datasource.firebase.core.auth.FirebaseAuthInvalidUserException
+import dev.gitlive.firebase.auth.FirebaseAuthInvalidUserException
 import domain.usecase.firebase.auth.FirebaseAuthResetPasswordByEmailUseCase
 import domain.util.errorOrDefault
 import domain.util.isEmailValid

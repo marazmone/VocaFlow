@@ -6,8 +6,8 @@ insetsx = "0.1.0-alpha10"
 junit = "1.1.5"
 junitVersion = "4.13.2"
 koinCore = "3.5.0"
-kotlin = "1.9.20-RC"
-compose = "1.5.10-rc01"
+kotlin = "1.9.10"
+compose = "1.5.2"
 composeActivity = "1.8.0"
 appCompat = "1.6.1"
 androidxCore = "1.12.0"
@@ -61,6 +61,7 @@ android-application = { id = "com.android.application", version.ref = "gradle" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 nativeCocoapod = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 google-services = { id = "com.google.gms.google-services", version.ref = "gms" }

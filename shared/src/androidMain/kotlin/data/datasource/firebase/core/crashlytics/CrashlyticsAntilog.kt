@@ -1,6 +1,7 @@
 package data.datasource.firebase.core.crashlytics
 
-import data.datasource.firebase.core.Firebase
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.crashlytics.crashlytics
 import io.github.aakira.napier.Antilog
 import io.github.aakira.napier.LogLevel
 
