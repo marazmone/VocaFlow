@@ -24,7 +24,7 @@ allprojects {
     }
 
     detekt {
-        toolVersion = "1.23.1"
+        toolVersion = "1.23.3"
         source = files("src/main/java")
         config = files("$rootDir/detekt.yml")
         parallel = true
