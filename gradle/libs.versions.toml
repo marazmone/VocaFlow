@@ -1,5 +1,5 @@
 [versions]
-coilCompose = "2.4.0"
+coilCompose = "2.5.0"
 core = "1.5.0"
 gradle = "8.1.2"
 insetsx = "0.1.0-alpha10"
