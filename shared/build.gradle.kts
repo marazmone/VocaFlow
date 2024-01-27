@@ -54,7 +54,7 @@ kotlin {
 
                 // Firebase
                 implementation("dev.gitlive:firebase-auth:1.11.1")
-                implementation("dev.gitlive:firebase-crashlytics:1.10.4")
+                implementation("dev.gitlive:firebase-crashlytics:1.11.1")
 
                 // Kotlin
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
