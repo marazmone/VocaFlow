@@ -53,7 +53,7 @@ kotlin {
                 implementation(libs.napier)
 
                 // Firebase
-                implementation("dev.gitlive:firebase-auth:1.11.1")
+                implementation("dev.gitlive:firebase-auth:1.13.0")
                 implementation("dev.gitlive:firebase-crashlytics:1.11.1")
 
                 // Kotlin
